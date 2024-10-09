@@ -1,4 +1,5 @@
 using KinematicCharacterController;
+using System;
 using UnityEngine;
 
 
@@ -27,6 +28,7 @@ public class MyCharacterController : MonoBehaviour, ICharacterController
     public bool RotationObstruction;
     public Vector3 Gravity = new Vector3(0, -30f, 0);
     public Transform MeshRoot;
+    public float interactRange = 1f;
 
     private Vector3 _moveInputVector;
     private Vector3 _lookInputVector;
@@ -166,5 +168,24 @@ public class MyCharacterController : MonoBehaviour, ICharacterController
 
     public void OnDiscreteCollisionDetected(Collider hitCollider)
     {
+    }
+
+    internal void TryToInteract()
+    {
+        var camera = Camera.main;
+        RaycastHit hitInfo;
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo, interactRange))
+        {
+            var interactable = hitInfo.collider.GetComponent<Iinteractable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+            }
+            Debug.Log(hitInfo.collider.name);
+        }
+        else
+        {
+            Debug.Log("Hit nothing");
+        }
     }
 }
