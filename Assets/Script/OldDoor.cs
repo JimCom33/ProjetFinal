@@ -9,7 +9,7 @@ public class OldDoor : MonoBehaviour, Iinteractable
     {
         if (FindAnyObjectByType<MyPlayer>().HasOldKey && door != null)
         {
-            Destroy(door);
+            GetComponent<Animator>().SetTrigger("Open");
         }
     }
 
