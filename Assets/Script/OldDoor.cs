@@ -7,9 +7,13 @@ public class OldDoor : MonoBehaviour, Iinteractable
     public GameObject door;
     public void Interact()
     {
-        if (FindAnyObjectByType<MyPlayer>().HasOldKey && door != null)
+        if (FindAnyObjectByType<MyPlayer>().HasOldKey)
         {
             GetComponent<Animator>().SetTrigger("Open");
+        }
+        else
+        {
+            FindAnyObjectByType<SubtitleText>().ShowText("La porte est verouille", 5f);
         }
     }
 
