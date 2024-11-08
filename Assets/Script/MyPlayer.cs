@@ -1,6 +1,7 @@
 using KinematicCharacterController.Examples;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -10,6 +11,8 @@ public class MyPlayer : MonoBehaviour
     public Transform CameraFollowPoint;
     public MyCharacterController Character;
     private bool hasOldKey;
+    private Camera secondaryCam;
+    private GraphicRaycaster secondaryRaycaster;
     private const string MouseXInput = "Mouse X";
     private const string MouseYInput = "Mouse Y";
     private const string MouseScrollInput = "Mouse ScrollWheel";
@@ -30,13 +33,37 @@ public class MyPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (secondaryCam != null) // we zoomed on another camera
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Character.TryToInteract();
+            if (Input.GetMouseButtonDown(1))
+            {
+                ResetCamera();
+            }
+        }
+        else // we are in first person on player
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Character.TryToInteract();
+            }
+
+            HandleCharacterInput();
         }
 
-        HandleCharacterInput();
+        
+    }
+
+    private void ResetCamera()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        secondaryCam.gameObject.SetActive(false);
+        secondaryCam = null;
+
+        secondaryRaycaster.enabled = false;
+        secondaryRaycaster = null;
+
+        OrbitCamera.gameObject.SetActive(true);
     }
 
     private void LateUpdate()
@@ -89,6 +116,17 @@ public class MyPlayer : MonoBehaviour
     internal void CollectOldKey()
     {
         hasOldKey = true;
+    }
+
+    internal void SetSecondaryCamera(Camera monitorCamera, GraphicRaycaster raycaster)
+    {
+        secondaryCam = monitorCamera;
+        secondaryRaycaster = raycaster;
+
+        Cursor.lockState = CursorLockMode.Confined;
+        OrbitCamera.gameObject.SetActive(false);
+        secondaryCam.gameObject.SetActive(true);
+        raycaster.enabled = true;
     }
 
     public bool HasOldKey => hasOldKey;
