@@ -9,7 +9,9 @@ public class PickUpFlashLight : MonoBehaviour, Iinteractable
     public void Interact()
     {
         var camera = FindAnyObjectByType<ExampleCharacterCamera>();
-        camera.GetComponentInChildren<Light>().intensity = 2f;
+        camera.GetComponentInChildren<Light>().intensity = 20f;
+
+        FindAnyObjectByType<MyCharacterController>().hasFlashlight = true;
         Destroy(gameObject);
     }
 

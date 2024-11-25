@@ -11,6 +11,11 @@ public class SubtitleText : MonoBehaviour
     public TMP_Text message;
     private float messageTimer;
 
+    internal void ShowText(string text)
+    {
+        ShowText(text, 5f);
+    }
+
     internal void ShowText(string text, float duration)
     {
         message.text = text;

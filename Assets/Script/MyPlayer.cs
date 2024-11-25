@@ -42,7 +42,7 @@ public class MyPlayer : MonoBehaviour
         }
         else // we are in first person on player
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!PauseMenu.IsPaused && Input.GetMouseButtonDown(0))
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Character.TryToInteract();
