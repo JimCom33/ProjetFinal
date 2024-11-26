@@ -6,6 +6,8 @@ public class ElevatorButton : MonoBehaviour, Iinteractable
 
     public void Interact()
     {
+        Debug.Log("Hit");
+
         FindAnyObjectByType<Elevator>().GotoFloor(floorNumber);
     }
 }
