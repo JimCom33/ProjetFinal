@@ -13,14 +13,14 @@ public class BeerCan : MonoBehaviour, Iinteractable
         {
             return;
         }
-
+        fakeWall.SetActive(false);
         ApplyDrunkEffect(true);
         Invoke(nameof(SoberUp), 5f);
     }
 
     private void ApplyDrunkEffect(bool isOn)
     {
-        fakeWall.SetActive(!isOn);
+        //fakeWall.SetActive(!isOn);
 
         isDrank = isOn;
 
