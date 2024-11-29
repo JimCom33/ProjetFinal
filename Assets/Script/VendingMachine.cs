@@ -13,6 +13,7 @@ public class VendingMachine : MonoBehaviour, Iinteractable
     void Start()
     {
         beerCan = FindAnyObjectByType<BeerCan>();
+        beerCan.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
