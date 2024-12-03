@@ -16,7 +16,7 @@ public class KeyPadPuzzel : MonoBehaviour
 
     private void Start()
     {
-        key.SetActive(false);
+        //key.SetActive(false);
     }
     internal void OnPress(int number)
     {
@@ -32,6 +32,8 @@ public class KeyPadPuzzel : MonoBehaviour
             {
                 isFinished = true;
                 greenLight.enabled = true;
+                FindAnyObjectByType<MyPlayer>().UnluckDeskDoor();
+                FindAnyObjectByType<DeskDoor>().OpenDoor();
                 key.SetActive(true);
             }
         }

@@ -11,6 +11,7 @@ public class MyPlayer : MonoBehaviour
     public Transform CameraFollowPoint;
     public MyCharacterController Character;
     private bool hasOldKey;
+    private bool unlockDeskDoor;
     private Camera secondaryCam;
     private GraphicRaycaster secondaryRaycaster;
     private const string MouseXInput = "Mouse X";
@@ -118,6 +119,11 @@ public class MyPlayer : MonoBehaviour
         hasOldKey = true;
     }
 
+    internal void UnluckDeskDoor()
+    {
+        unlockDeskDoor = true;
+    }
+
     internal void SetSecondaryCamera(Camera monitorCamera, GraphicRaycaster raycaster)
     {
         secondaryCam = monitorCamera;
@@ -130,4 +136,6 @@ public class MyPlayer : MonoBehaviour
     }
 
     public bool HasOldKey => hasOldKey;
+
+    public bool UnlockedDeskDoor => unlockDeskDoor;
 }
