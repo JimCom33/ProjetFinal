@@ -6,6 +6,7 @@ using UnityEngine;
 public class Elevator : MonoBehaviour, IMoverController
 {
     public Transform topTransform;
+    public Transform bottomTransform;
     Vector3 originalPosition;
     Vector3 targetPosition;
 
