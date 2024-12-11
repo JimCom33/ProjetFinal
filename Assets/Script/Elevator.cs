@@ -61,5 +61,9 @@ public class Elevator : MonoBehaviour, IMoverController
         {
             targetPosition = topTransform.position;
         }
+        else if (floorNumber == 3)
+        {
+            targetPosition = bottomTransform.position;
+        }
     }
 }
