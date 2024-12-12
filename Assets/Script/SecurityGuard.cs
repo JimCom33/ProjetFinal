@@ -7,6 +7,8 @@ public class SecurityGuard : MonoBehaviour, Iinteractable
 
     private bool isInteracting = false;
 
+    private bool gaveAntiDote = false;
+
     public Animator animator;
 
     public OldKey oldKey;
@@ -35,9 +37,16 @@ public class SecurityGuard : MonoBehaviour, Iinteractable
 
         if (FindAnyObjectByType<MyPlayer>().HasAntiDote)
         {
-            FindAnyObjectByType<SubtitleText>().ShowText("Merci infiniment vous m'avez sauvez la vie. Voici la clé vous pouvez maintenant partir.", 10f);
-            oldKey.gameObject.SetActive(true);
-            antiDote.SetActive(false);
+            gaveAntiDote = true;
+
+            if(gaveAntiDote)
+            {
+                FindAnyObjectByType<SubtitleText>().ShowText("Merci infiniment vous m'avez sauvez la vie. Voici la clé vous pouvez maintenant partir.", 10f);
+                oldKey.gameObject.SetActive(true);
+                antiDote.SetActive(false);
+            }
+
+            
         }
     }
 
