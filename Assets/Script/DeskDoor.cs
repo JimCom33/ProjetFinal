@@ -8,8 +8,11 @@ public class DeskDoor : MonoBehaviour, Iinteractable
     {
 
         if (FindAnyObjectByType<MyPlayer>().UnlockedDeskDoor)
-        Debug.Log("interact door");
-        GetComponent<Animator>().SetTrigger("Open");
+        {
+            Debug.Log("interact door");
+            GetComponent<Animator>().SetTrigger("Open");
+        }
+        
     }
 
     public void OpenDoor()

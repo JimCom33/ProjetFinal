@@ -6,6 +6,8 @@ public class CloseDoor : MonoBehaviour
     public GameObject Door;
 
     public AudioSource closeDoor;
+
+    private bool beenPlayed = false;
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter");
@@ -13,6 +15,11 @@ public class CloseDoor : MonoBehaviour
 
         animator.SetTrigger("Open");
 
-        closeDoor.Play();
+        if (!beenPlayed)
+        {
+            closeDoor.Play();
+            beenPlayed = true;
+        }
+       
     }
 }

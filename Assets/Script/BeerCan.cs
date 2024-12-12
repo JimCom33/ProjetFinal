@@ -15,6 +15,7 @@ public class BeerCan : MonoBehaviour, Iinteractable
         }
         fakeWall.SetActive(false);
         ApplyDrunkEffect(true);
+        this.gameObject.SetActive(false);
         Invoke(nameof(SoberUp), 5f);
     }
 

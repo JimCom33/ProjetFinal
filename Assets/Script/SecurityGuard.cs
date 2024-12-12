@@ -24,7 +24,12 @@ public class SecurityGuard : MonoBehaviour, Iinteractable
     private int currentLineIndex = 0;
     public void Interact()
     {
-        currentLineIndex = 0;
+        TimeManager timerManager = FindAnyObjectByType<TimeManager>();
+
+        timerManager.StartTimer();
+    
+
+    currentLineIndex = 0;
         isInteracting = true;
         ShowNextDialogue();
 
