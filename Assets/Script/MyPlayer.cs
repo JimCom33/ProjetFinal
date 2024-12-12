@@ -7,11 +7,17 @@ using UnityEngine.UI;
 
 public class MyPlayer : MonoBehaviour
 {
+    public GameObject oldKeyObj;
+    public GameObject flaskObj;
+
     public ExampleCharacterCamera OrbitCamera;
     public Transform CameraFollowPoint;
     public MyCharacterController Character;
     private bool hasOldKey;
     private bool unlockDeskDoor;
+    private bool hasAnti;
+    private bool hasDote;
+    private bool hasAntiDote;
     private Camera secondaryCam;
     private GraphicRaycaster secondaryRaycaster;
     private const string MouseXInput = "Mouse X";
@@ -117,11 +123,36 @@ public class MyPlayer : MonoBehaviour
     internal void CollectOldKey()
     {
         hasOldKey = true;
+        oldKeyObj.SetActive(true);
     }
 
     internal void UnluckDeskDoor()
     {
         unlockDeskDoor = true;
+    }
+
+    internal void CollectAnti()
+    {
+        hasAnti = true;
+    }
+    internal void CollectDote()
+    {
+        hasDote = true;
+    }
+    internal void CollectAntiDote()
+    {
+        hasAntiDote = true;
+        flaskObj.SetActive(true);
+    }
+
+    internal void DropAnti()
+    {
+        hasAnti = false;
+    }
+
+    internal void DropDote()
+    {
+        hasDote = false;
     }
 
     internal void SetSecondaryCamera(Camera monitorCamera, GraphicRaycaster raycaster)
@@ -138,4 +169,8 @@ public class MyPlayer : MonoBehaviour
     public bool HasOldKey => hasOldKey;
 
     public bool UnlockedDeskDoor => unlockDeskDoor;
+
+    public bool HasAnti => hasAnti;
+    public bool HasDote => hasDote;
+    public bool HasAntiDote => hasAntiDote;
 }

@@ -11,6 +11,7 @@ public class EnterCafeteria : MonoBehaviour
         if (character != null && !character.hasFlashlight)
         {
             FindAnyObjectByType<SubtitleText>().ShowText("Aider moi svp... je vais bientot mourir.");
+            DisableForSeconds();
         }
     }
 
